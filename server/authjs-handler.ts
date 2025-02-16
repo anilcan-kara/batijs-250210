@@ -24,11 +24,12 @@ if (!globalThis.crypto) {
 
 console.log("env.AUTH_TRUST_HOST", env.AUTH_TRUST_HOST);
 
-const authjsConfig = {
+export const authjsConfig = {
   basePath: "/api/auth",
   trustHost: Boolean(env.AUTH_TRUST_HOST ?? env.VERCEL ?? env.NODE_ENV !== "production"),
   // TODO: Replace secret {@see https://authjs.dev/reference/core#secret}
-  //   secret: "MY_SECRET",
+  secret: env.AUTH_SECRET,
+  //   strategy: "jwt",
   providers: [
     // TODO: Choose and implement providers
     CredentialsProvider({
